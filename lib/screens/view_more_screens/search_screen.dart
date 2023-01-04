@@ -123,7 +123,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       .snapshots(),
               builder: (context, snapshot) {
                 return (snapshot.connectionState == ConnectionState.waiting)
-                    ? const Center(child: const CircularProgressIndicator())
+                     ? const Center(child: const CircularProgressIndicator())
                     : SizedBox(
                         height: 200,
                         child: ListView.builder(
