@@ -43,42 +43,44 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            backgroundColor: const Color(0xFFFAFDFF),
-            body: _tabs[_selectedIndex].widget,
-            bottomNavigationBar: Padding(
-              padding: const EdgeInsets.all(20),
-              child: ClipRRect(
-                clipBehavior: Clip.antiAlias,
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                child: BottomNavigationBar(
-                  selectedFontSize: 16,
-                  currentIndex: _selectedIndex,
-                  unselectedItemColor: Colors.green,
-                  selectedIconTheme: const IconThemeData(color: Colors.green),
-                  showSelectedLabels: false,
-                  elevation: 0,
-                  onTap: (index) {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
-                  items: [
-                    for (int i = 0; i < _tabs.length; i++)
-                      BottomNavigationBarItem(
-                        label: '',
-                        icon: _selectedIndex == i
-                            ? containerOfBar(
-                                page: _tabs[i].title,
-                                icon: _tabs[i].icon,
-                              )
-                            : Icon(_tabs[i].icon),
-                        backgroundColor: Colors.white,
-                      ),
-                  ],
-                  type: BottomNavigationBarType.shifting,
-                ),
-              ),
-            ));
+        backgroundColor: const Color(0xFFFAFDFF),
+        body: _tabs[_selectedIndex].widget == null
+            ? CircularProgressIndicator()
+            : _tabs[_selectedIndex].widget,
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(20),
+          child: ClipRRect(
+            clipBehavior: Clip.antiAlias,
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            child: BottomNavigationBar(
+              selectedFontSize: 16,
+              currentIndex: _selectedIndex,
+              unselectedItemColor: Colors.green,
+              selectedIconTheme: const IconThemeData(color: Colors.green),
+              showSelectedLabels: false,
+              elevation: 0,
+              onTap: (index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
+              items: [
+                for (int i = 0; i < _tabs.length; i++)
+                  BottomNavigationBarItem(
+                    label: '',
+                    icon: _selectedIndex == i
+                        ? containerOfBar(
+                            page: _tabs[i].title,
+                            icon: _tabs[i].icon,
+                          )
+                        : Icon(_tabs[i].icon),
+                    backgroundColor: Colors.white,
+                  ),
+              ],
+              type: BottomNavigationBarType.shifting,
+            ),
+          ),
+        ));
   }
 }
 
